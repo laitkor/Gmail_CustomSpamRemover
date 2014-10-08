@@ -9,7 +9,8 @@ Can remove/delete emails matching with pre-defined criteria in config file.
 * Can filter emails based on restricted keywords specified in config file.
 * Forwards filtered email(s) to the email address specified in the config file before deleting it from user's inbox.
 
-To execute this script, open **config.php** and do the required settings. That would include the following heads - 
+To execute this script, open **config.php** and do the required settings. That would include the following heads -
+ 
 1. ** BASE URL -** Enter the base url of your script directory.
 2. ** SMTP & EMAIL Settings -** Enter the required SMTP details and other email settings.
 3. ** Blocked Keywords Array -** This is an array containing blocked keywords, that are to be serached in email subject and content. You can add as many as you want.
