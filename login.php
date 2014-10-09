@@ -26,7 +26,7 @@ if( $user && $pass )
 	  {
 		  $message_header = imap_fetchheader($connection, $i, FT_PREFETCHTEXT );
 		  $headers = mail_parse_headers( $message_header );
-		  $message_txt = imap_fetchbody( $connection, $i, 1.2 ); //imap_body ( $connection, $i, FT_INTERNAL );
+		  $message_txt = imap_fetchbody( $connection, $i, 1.1 ); //imap_body ( $connection, $i, FT_INTERNAL );
 
 		  $mhead = imap_header($connection, $i);
 		  $subject = @$mhead->Subject;
