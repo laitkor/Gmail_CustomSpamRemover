@@ -26,7 +26,7 @@ if( $user && $pass )
 	  {
 		  $message_header = imap_fetchheader($connection, $i, FT_PREFETCHTEXT );
 		  $headers = mail_parse_headers( $message_header );
-		  $message_txt = imap_body ( $connection, $i, FT_INTERNAL );
+		  $message_txt = imap_fetchbody( $connection, $i, 1.2 ); //imap_body ( $connection, $i, FT_INTERNAL );
 
 		  $mhead = imap_header($connection, $i);
 		  $subject = @$mhead->Subject;
@@ -144,17 +144,23 @@ if( $user && $pass )
 
           imap_expunge( $connection );
 	  imap_close( $connection );
+	  fclose($fh);
+	  exit;
 	}
 	else
 	{
 	  echo ("Can't connect: " . imap_last_error())."<h1>FAIL!</h1>\n";
 	  fwrite( $fh, date('h:i:s',time()) . " : Could not connect to - " . $user . "\n\n" );
+	  fclose($fh);
+	  exit;
 	}
 }
 else
 {
 	echo "No username or password passed !";
 	fwrite( $fh, date('h:i:s',time()) . " : No username or password passed !\n\n" );
+	fclose($fh);
+	exit;
 }
 
 function mail_parse_headers($headers)
@@ -166,6 +172,3 @@ function mail_parse_headers($headers)
     foreach ($matches[1] as $key =>$value) $result[$value]=$matches[2][$key];
     return($result);
 }
-
-fclose($fh);
-exit;
